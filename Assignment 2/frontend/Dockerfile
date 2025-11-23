@@ -4,7 +4,8 @@ WORKDIR /app
 
 RUN python -m pip install --no-cache-dir flask requests
 
-COPY ["app.py", "templates", "./"]
+COPY app.py .
+COPY templates ./templates
 
 EXPOSE 5000
     
