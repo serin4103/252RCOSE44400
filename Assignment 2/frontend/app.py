@@ -22,7 +22,15 @@ def index():
         msg = data.get("message", "")
     except Exception:
         msg = ""
-    return render_template("index.html", current_message=msg)
+
+    message = msg
+    last_updated_at = ""
+    msg_splited = msg.split(" (updated at ")
+    if len(msg_splited) == 2:
+        message = msg_splited[0]
+        last_updated_at = msg_splited[1][:-1]
+
+    return render_template("index.html", current_message=message, last_updated_at=last_updated_at)
 
 
 @app.route("/update", methods=["POST"])

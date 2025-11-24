@@ -4,7 +4,7 @@ WORKDIR /app
 
 RUN python -m pip install --no-cache-dir flask requests
 
-COPY ["app.py", "./"]
+COPY app.py .
 
 EXPOSE 5001
 

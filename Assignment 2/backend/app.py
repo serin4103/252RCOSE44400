@@ -30,8 +30,11 @@ def write_message(msg: str):
     - Write msg to the file
     """
     try:
+        ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        stored = f"{msg} (updated at {ts})"
         with open(DATA_PATH, "w", encoding="utf-8") as f:
-            f.write(msg)
+            f.write(stored)
+        return
     except Exception:
         return
 
@@ -71,6 +74,11 @@ def update_message():
 #
 # - Add new endpoint /api/health that returns:
 #   { "status": "healthy" }
+
+
+@app.route('/api/health', methods=['GET'])
+def health():
+    return jsonify({"status": "healthy"})
 
 
 if __name__ == "__main__":
